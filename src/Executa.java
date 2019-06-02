@@ -1,9 +1,11 @@
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import entidade.Atendente;
 import entidade.Cliente;
+import entidade.Historico;
 import entidade.OS;
 import entidade.Tecnico;
 
@@ -46,9 +48,16 @@ public class Executa {
 				} else {
 					System.out.println("Nenhuma OS cadastrada!\n\n");
 				}
+			}else if (5 == i1){
+				if(!listaOS.isEmpty()) {
+					Historico historico = new Historico(listaCliente.get(0), listaOS.get(0), 
+							listaOS.get(0).getTecnico(), new Date(), new Date(), listaOS.get(0).getResumo());
+				}else {
+					System.out.println("Não exite Historico!\n\n5");
+				}
 			}
 
-			limpatela();
+			//limpatela();
 		}
 
 	}

@@ -13,6 +13,17 @@ public class Historico implements GerenciaHistoricoService{
 	private Date dtFinal;
 	private String descricao;
 	
+	public Historico(Cliente cliente, OS os, Tecnico tecnico, Date dtInicial, 
+			Date dtFinal, String descricao) {
+		super();
+		this.cliente = cliente;
+		this.os = os;
+		this.tecnico = tecnico;
+		this.dtInicial = dtInicial;
+		this.dtFinal = dtFinal;
+		this.descricao = descricao;
+	}
+	
 	public Date getDtInicial() {
 		return dtInicial;
 	}
@@ -52,7 +63,13 @@ public class Historico implements GerenciaHistoricoService{
 	
 	@Override
 	public void exibirHistorico() {
-		// TODO Auto-generated method stub
-		
+
+		System.out.println("Nome Cliente: " + this.getCliente().getNome());
+		System.out.println("Contrato Cliente: " + this.getCliente().getContrato());
+		System.out.println("Nome Tecnico: " + this.getTecnico().getNome());
+		System.out.println("Data do Registro: " + this.getDtFinal());
+		System.out.println("Resumo: " + this.getDescricao());
+		System.out.println("Fim do Historico!");
+
 	}
 }
