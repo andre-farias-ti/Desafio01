@@ -1,18 +1,16 @@
 package entidade;
 
-import java.util.Date;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
+import frame.CadastraAtendenteFrame;
 import service.GerenciaAtendenteService;
 
 public class Atendente extends Pessoa implements GerenciaAtendenteService {
 
 	private String matricula;
-
-	public Atendente() {
-		super();
-		this.matricula = "10005";
-	}
 
 	public String getMatricula() {
 		return matricula;
@@ -29,16 +27,30 @@ public class Atendente extends Pessoa implements GerenciaAtendenteService {
 	}
 
 	@Override
-	public Atendente salvarAtendente() {
-		Scanner scanner = new Scanner(System.in);  
-		System.out.println("Digite o nome do Atendente:");
-		String s1 = scanner.nextLine();
-		System.out.println("Digite a Matricula:");
-		String s2 = scanner.nextLine();
-		Atendente atendente = new Atendente();
-		atendente.setNome(s1);
-		atendente.setMatricula(s2);
+	public Atendente salvarAtendente(ArrayList<Atendente> listaAtendente) throws ParseException {
+
+		JFrame frame = new CadastraAtendenteFrame(listaAtendente);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setLocationRelativeTo( null );
+        frame.setVisible( true );
 		
-		return atendente;
+		//		String nome = JOptionPane.showInputDialog("Digite o nome do Atendente:");
+//		String telefone = JOptionPane.showInputDialog("Digite o Telefone:");
+//		String dtNascimento = JOptionPane.showInputDialog("Digite a data de nascimento");
+//		String cpf = JOptionPane.showInputDialog("Digite o numero de CPF");
+//		Atendente atendente = new Atendente();
+//		atendente.setNome(nome);
+//		Random gerador  = new Random();
+//		Long matricula = gerador.nextLong();
+//		atendente.setMatricula(matricula.toString());
+//		atendente.setTelefone(telefone);
+//		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+//		Date dataFormatada = formato.parse(dtNascimento);
+//		atendente.setDtNascimento(dataFormatada);
+//		atendente.setCPF(cpf);
+//		
+//		JOptionPane.showMessageDialog(null, "Atendente Salvo!", null, 1);
+//		
+		return null;
 	}
 }

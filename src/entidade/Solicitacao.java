@@ -1,20 +1,23 @@
 package entidade;
 
-public class Solicitacao {
+import javax.swing.JOptionPane;
+
+import service.SolicitacaoService;
+
+public class Solicitacao implements SolicitacaoService {
 
 	private int id;
 	private Cliente cliente;
 	private Atendente atendente;
-	private int prioridade;
-	private int tipoSol;
+	private String prioridade;
+	private String tipoSol;
 	private OS ordemServico;
 	
-	public Solicitacao(Cliente cliente, Atendente atendente, int prioridade, int tipoSol, OS ordemServico) {
-		super();
+	public Solicitacao(){};
+	
+	public Solicitacao(Cliente cliente, Atendente atendente, OS ordemServico) {
 		this.cliente = cliente;
 		this.atendente = atendente;
-		this.prioridade = prioridade;
-		this.tipoSol = tipoSol;
 		this.ordemServico = ordemServico;
 	}
 	
@@ -36,16 +39,16 @@ public class Solicitacao {
 	public void setAtendente(Atendente atendente) {
 		this.atendente = atendente;
 	}
-	public int getPrioridade() {
+	public String getPrioridade() {
 		return prioridade;
 	}
-	public void setPrioridade(int prioridade) {
+	public void setPrioridade(String prioridade) {
 		this.prioridade = prioridade;
 	}
-	public int getTipoSol() {
+	public String getTipoSol() {
 		return tipoSol;
 	}
-	public void setTipoSol(int tipoSol) {
+	public void setTipoSol(String tipoSol) {
 		this.tipoSol = tipoSol;
 	}
 	public OS getOrdemServico() {
@@ -53,5 +56,14 @@ public class Solicitacao {
 	}
 	public void setOrdemServico(OS ordemServico) {
 		this.ordemServico = ordemServico;
+	}
+
+	@Override
+	public Solicitacao gerarSolicitacao(Cliente cliente, Atendente atendente, OS ordemServico) {
+		
+		String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
+		String contrato = JOptionPane.showInputDialog("Digite o numero de contrato");
+		
+		return null;
 	}
 }

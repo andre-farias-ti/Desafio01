@@ -1,13 +1,13 @@
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+
+import javax.swing.JFrame;
 
 import entidade.Atendente;
 import entidade.Cliente;
-import entidade.Historico;
 import entidade.OS;
 import entidade.Tecnico;
+import frame.JFrameMain;
 
 public class Executa {
 
@@ -16,60 +16,92 @@ public class Executa {
 		ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
 		ArrayList<Atendente> listaAtendente = new ArrayList<Atendente>();
 		ArrayList<OS> listaOS = new ArrayList<OS>();
-		
-		while (true) {
-			Scanner scanner = new Scanner(System.in);
+		ArrayList<Tecnico> listaTecnico = new ArrayList<Tecnico>();
 
-			System.out.println("O QUE DESEJA FAZER:");
-			System.out.println("Cadastra Cliente digite 1->");
-			System.out.println("Cadastra Atendente digite 2->");
-			System.out.println("Cadastra Orden de Servi�o digite 3->");
-			System.out.println("Resolver Orden de Servi�o digite 4->");
-			System.out.println("Exibir historico digite 5->");
+//		while (sair) {
 
-			int i1 = scanner.nextInt();
+//			Object tests = JOptionPane.showInputDialog(null, "Please choose a name", "Example 1",
+//					JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Amanda",
+//							"Colin", "Don", "Fred", "Gordon", "Janet", "Jay",
+//							"Joe", "Judie", "Kerstin", "Lotus", "Maciek", "Mark",
+//							"Mike", "Mulhern", "Oliver", "Peter", "Quaxo", "Rita",
+//							"Sandro", "Tim", "Will" }, "Joe");
+//			
+//			System.out.println(tests);
+			
+			JFrame frame = new JFrameMain(listaCliente, listaAtendente, listaOS, listaTecnico);
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.setLocationRelativeTo( null );
+	        frame.setVisible( true );
+			
+//			String[] options = {"Cadastrar Cliente","Cadastrar Atendente", "Cadastra Orden de Serviço", "Resolver Orden de Serviço","Exibir historico digite", "Iniciar Atendimento"};
+			
+//	        JPanel panel = new JPanel( new GridLayout(6, 1) );
+//	        for (String string : options) {
+//				
+//	        	panel.add( new JButton(string) );
+//			}
+//	        panel.setVisible(true);
+//	        
+//	        frame.add( panel );
+	        
+	        
+//	        panel.add( new JLabel("First Name") );
+//	        JTextField firstName = new JTextField(10);
+//	      firstName.addAncestorListener( new RequestFocusListener(false) );
+//	        panel.add( firstName );
+//	        panel.add( new JLabel("Last Name") );
+//	        JTextField lastName = new JTextField(10);
+//	        panel.add( lastName );
+//	        int x = 5;
+//	        int x = JOptionPane.showOptionDialog(frame,
+//	                "O QUE DESEJA FAZER:",
+//					"Opções:",
+//					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, options[0]);
+	        
+			
+//			int x = JOptionPane.showOptionDialog(frame, "O QUE DESEJA FAZER:",
+//					"Opções:",
+//					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
-			if (1 == i1) {
-				Cliente cliente = new Cliente();
-				listaCliente.add(cliente.salvarCliente());
-				System.out.println("cliente Salvo!\n\n");
-			} else if (2 == i1) {
-				Atendente atendente = new Atendente();
-				listaAtendente.add(atendente.salvarAtendente());
-			} else if (3 == i1) {
-				OS os = new OS();
-				listaOS.add(os.cadastraOS());
-				System.out.println("Atendente Salvo!\n\n");
-			} else if (4 == i1) {
-				if (!listaOS.isEmpty()) {
-					Tecnico tecnico = listaOS.get(0).getTecnico();
-					tecnico.resolverOS(listaOS.get(0));
-					System.out.println("OS Cadastrada!\n\n");
-				} else {
-					System.out.println("Nenhuma OS cadastrada!\n\n");
-				}
-			}else if (5 == i1){
-				if(!listaOS.isEmpty()) {
-					Historico historico = new Historico(listaCliente.get(0), listaOS.get(0), 
-							listaOS.get(0).getTecnico(), new Date(), new Date(), listaOS.get(0).getResumo());
-				}else {
-					System.out.println("N�o exite Historico!\n\n5");
-				}
-			}
-
-			//limpatela();
-		}
+//			switch (x) {
+//
+//			case 0:
+//				Cliente cliente = new Cliente();
+//				listaCliente.add(cliente.salvarCliente());
+//				break;
+//			case 1:
+//				Atendente atendente = new Atendente();
+//				listaAtendente.add(atendente.salvarAtendente());
+//				break;
+//			case 2:
+//				OS os = new OS();
+//				listaOS.add(os.cadastraOS(listaCliente, listaTecnico));
+//				break;
+//			case 3:
+//					Tecnico tecnico = new Tecnico();
+//					tecnico.resolverOS(listaOS);
+//				break;
+//			case 4:
+//				if (!listaOS.isEmpty()) {
+//					Historico historico = new Historico(listaCliente.get(0), listaOS.get(0),
+//							listaOS.get(0).getTecnico(), new Date(), new Date(), listaOS.get(0).getResumo());
+//				} else {
+//					System.out.println("N�o exite Historico!");
+//				}
+//				break;
+//			case 5:
+//				sair = false;
+//				break;
+//			
+//			case 6:
+//				
+//				break;	
+//			}
+//		}
 
 	}
 	
-	public static void limpatela() {	 
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	 }
 
 }
+

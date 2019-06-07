@@ -4,11 +4,6 @@ public class Grupo {
 
 	private String tipoGrupo;
 
-	public Grupo() {
-		super();
-		this.tipoGrupo = "Fisico";
-	}
-
 	public String getTipoGrupo() {
 		return tipoGrupo;
 	}

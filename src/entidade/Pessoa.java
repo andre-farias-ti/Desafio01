@@ -1,19 +1,20 @@
 package entidade;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.UUID;
 
 public class Pessoa {
 	
-	private Long id;
+	private UUID id;
 	private String nome;
 	private String telefone;
 	private Date dtNascimento;
-	private int CPF;
+	private String CPF;
 	
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	public String getNome() {
@@ -34,10 +35,10 @@ public class Pessoa {
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
-	public int getCPF() {
+	public String getCPF() {
 		return CPF;
 	}
-	public void setCPF(int cPF) {
+	public void setCPF(String cPF) {
 		CPF = cPF;
 	}
 
