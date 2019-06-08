@@ -72,6 +72,7 @@ public class CadastraAtendenteFrame extends JFrame {
 		}  
         
         panel.add( numeroCPF );
+        
         principal.add(panel);
         
         JButton CadastrarCliente = new JButton("Cadastrar Atendente");
@@ -83,7 +84,7 @@ public class CadastraAtendenteFrame extends JFrame {
 				try {
 					
 					Atendente atendente = new Atendente();
-					atendente.setNome(nomeAtendente.getText());
+					atendente.setNome(panel.getPropertyChangeListeners("nome").toString());
 					atendente.setMatricula(numeroMatricula.getText());
 					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 					Date dataFormatada = formato.parse(dataNascimento.getText());
