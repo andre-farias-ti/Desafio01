@@ -5,6 +5,12 @@ public class SubCategoria {
 	private String noSubCategoria;
 	private Item item;
 
+	public SubCategoria(String noSubCategoria, Item item) {
+		super();
+		this.noSubCategoria = noSubCategoria;
+		this.item = item;
+	}
+
 	public Item getItem() {
 		return item;
 	}

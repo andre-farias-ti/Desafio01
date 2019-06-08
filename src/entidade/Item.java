@@ -5,8 +5,7 @@ public class Item {
 	private String noItem;
 
 	public Item(String noItem) {
-		super();
-		this.noItem = "Substituido";
+		this.noItem = noItem;
 	}
 
 	public String getNoItem() {

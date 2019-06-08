@@ -1,11 +1,15 @@
 
 package entidade;
 
-import java.util.Scanner;
+import java.text.ParseException;
+import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
+import frame.CadastroClienteFrame;
 import service.GerenciaClienteService;
 
-public class Cliente extends Pessoa implements GerenciaClienteService{
+public class Cliente extends Pessoa implements GerenciaClienteService {
 
 	private String contrato;
 	private String equipamento;
@@ -24,25 +28,24 @@ public class Cliente extends Pessoa implements GerenciaClienteService{
 	}
 	
 	@Override
-	public void solicitarAtendimento() {
-		Atendente atendente = new Atendente();
+	public void solicitarAtendimento(Cliente cliente, Atendente atendente, OS ordemServico) {
+		Solicitacao solicitacao = new Solicitacao();
+		solicitacao.gerarSolicitacao(cliente, atendente, ordemServico);
 	}
 	
 	@Override
 	public void fazAniversario() {
 		// TODO Auto-generated method stub
 	}
+	
 	@Override
-	public Cliente salvarCliente() {
-		Scanner scanner = new Scanner(System.in);  
-		System.out.println("Digite o nome do cliente:");
-		String s1 = scanner.nextLine();
-		System.out.println("Digite o contrato:");
-		String s2 = scanner.nextLine();
-		Cliente cliente = new Cliente();
-		cliente.setNome(s1);
-		cliente.setContrato(s2);
+	public Cliente salvarCliente(ArrayList<Cliente> listaCliente) throws ParseException {
 		
-		return cliente;
+		JFrame frame = new CadastroClienteFrame(listaCliente);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setLocationRelativeTo( null );
+        frame.setVisible( true );
+		
+		return null;
 	}
 }

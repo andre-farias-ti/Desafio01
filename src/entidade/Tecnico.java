@@ -1,22 +1,21 @@
 package entidade;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import frame.CadastrarTecnicoFrame;
 import service.GerenciaTecnicoService;
+import service.MenssagenService;
 
 public class Tecnico extends Pessoa implements GerenciaTecnicoService{
 
 	private String matricula;
 	
 	private Grupo grupo;
-
-	public Tecnico() {
-		super();
-		this.matricula = "0002";
-	}
 
 	public Grupo getGrupo() {
 		return grupo;
@@ -35,34 +34,56 @@ public class Tecnico extends Pessoa implements GerenciaTecnicoService{
 	}
 
 	@Override
-	public void resolverOS(OS os) throws ParseException {
-
-		Scanner scanner = new Scanner(System.in);  
-		System.out.println("OS de numero: "+ os.getNumeroOS());
-		System.out.println("Contrato do Cliente: "+ os.getCliente().getContrato());
-		System.out.println("Nome do Cliente: "+ os.getCliente().getNome());
-		System.out.println("Digite o nome da categoria:");
-		String s1 = scanner.nextLine();
-		os.setCategorias(new Categoria(s1));
-		System.out.println("Digite o nome da subCategoria:");
-		String s2 = scanner.nextLine();
-		os.getCategorias().setSubCategoria(new SubCategoria(s2));
-		System.out.println("Digite o nome do item:");
-		String s3 = scanner.nextLine();
-		os.getCategorias().getSubCategoria().setItem(new Item(s3));
-		System.out.println("Digite a situaÁ„o:");
-		String s4 = scanner.nextLine();
-		os.setSituacao(s4);
-		System.out.println("Digite a Resumo:");
-		String s5 = scanner.nextLine();
-		os.setResumo(s5);
-		System.out.println("Digite a Data Final:");
-		String s6 = scanner.nextLine();
-		//convertendendo String em data
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		Date dataFormatada = formato.parse(s6);
-		os.setDhFinal(dataFormatada);
-		System.out.println("SUA OS FOI RESOLVIDA E ESTARA NO HISTORICO");
+	public void resolverOS(ArrayList<OS> listaOS) throws ParseException {
+		
+		
+		if(listaOS.isEmpty()) {
+			MenssagenService.menssagen("N√£o existe Ordende servi√ßo Cadastrada");
+		}else {
+			
+			List<String> nrOs = new ArrayList<String>();
+			
+			for (OS os : listaOS) {
+				nrOs.add(os.getNumeroOS());
+			}
+			
+			Object nrOSselct = JOptionPane.showInputDialog(null, "Por Favor Escolha um Orden de Servi√ßo", "Nome",
+					JOptionPane.QUESTION_MESSAGE, null, nrOs.toArray() , 1);
+			
+			
+			for (OS os : listaOS) {
+				if(os.getNumeroOS().equals(nrOSselct.toString())) {
+					
+					Object categoria = JOptionPane.showInputDialog(null,
+							String.format("OS DE NUMERO: %s \nNOME DO CLIENTE: %s \nEscolha a categoria: ",
+									os.getNumeroOS(), os.getCliente().getNome()),
+							"Categoria", JOptionPane.QUESTION_MESSAGE, null, CategoriaEnum.getListaValores(), 1);
+					
+					Object subCategoria = JOptionPane.showInputDialog(null,
+							String.format(
+									"OS DE NUMERO: %s \nNOME DO CLIENTE: %s \nCategoria: %s \nEscolha a Subategoria: ",
+									os.getNumeroOS(), os.getCliente().getNome(), categoria.toString()),
+							"Categoria", JOptionPane.QUESTION_MESSAGE, null,
+							SubCategoriaEnum.listarSubCategorias(CategoriaEnum.valueOf(categoria.toString())), 1);
+					
+					Object item = JOptionPane.showInputDialog(null,
+							String.format(
+									"OS DE NUMERO: %s \nNOME DO CLIENTE: %s \nCATEGORIA: %s \nSUBCATEGOTIA: %s \nEscolha o Item: ",
+									os.getNumeroOS(), os.getCliente().getNome(), categoria.toString(), subCategoria.toString()),
+							"Categoria", JOptionPane.QUESTION_MESSAGE, null,
+							ItenEnum.listarItemSubCategorias(CategoriaEnum.valueOf(categoria.toString())), 1);
+					
+					
+					Categoria categ = new Categoria(categoria.toString(),
+							new SubCategoria(subCategoria.toString(), new Item(item.toString())));
+					os.setCategorias(categ);
+					
+					break;
+				}
+			}
+			
+		}
+		
 	}
 
 	@Override
@@ -72,14 +93,14 @@ public class Tecnico extends Pessoa implements GerenciaTecnicoService{
 	}
 
 	@Override
-	public Tecnico salvarTecnico() {
-		Scanner scanner = new Scanner(System.in);  
-		System.out.println("Digite o nome do tecnico:");
-		String s1 = scanner.nextLine();
-		Tecnico tecnico = new Tecnico();
-		tecnico.setNome(s1);
-		tecnico.setGrupo(new Grupo());
-		return tecnico;
+	public Tecnico salvarTecnico(ArrayList<Tecnico> listaTecnico) throws ParseException {
+
+		JFrame frame = new CadastrarTecnicoFrame(listaTecnico);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setLocationRelativeTo( null );
+        frame.setVisible( true );
+		
+		return null;
 	}
 	
 }

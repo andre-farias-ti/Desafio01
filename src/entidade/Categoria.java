@@ -6,9 +6,9 @@ public class Categoria {
 	
 	private String noCategoria;
 
-	public Categoria(String noCategoria) {
-		super();
+	public Categoria(String noCategoria, SubCategoria subCategoria) {
 		this.noCategoria = noCategoria;
+		this.subCategoria = subCategoria;
 	}
 
 	public SubCategoria getSubCategoria() {
