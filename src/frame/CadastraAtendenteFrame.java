@@ -84,7 +84,7 @@ public class CadastraAtendenteFrame extends JFrame {
 				try {
 					
 					Atendente atendente = new Atendente();
-					atendente.setNome(panel.getPropertyChangeListeners("nome").toString());
+					atendente.setNome(nomeAtendente.getText());
 					atendente.setMatricula(numeroMatricula.getText());
 					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 					Date dataFormatada = formato.parse(dataNascimento.getText());
